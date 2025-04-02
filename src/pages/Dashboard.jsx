@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, Polyline, Circle } from 'react-leaflet';
 import { ExclamationTriangleIcon, XMarkIcon } from '@heroicons/react/24/outline';
+import { useNavigate } from 'react-router-dom';
+import { UserCircleIcon } from '@heroicons/react/24/outline'; // Add this with other icon imports
 import 'leaflet/dist/leaflet.css';
 
 export default function Dashboard() {
@@ -37,10 +39,22 @@ export default function Dashboard() {
     { id: 2, name: "Night Driving", count: 3, trend: "↑ 15%" },
     { id: 3, name: "Speeding", count: 2, trend: "↓ 5%" },
   ];
+  const navigate = useNavigate();
+
+const handleProfileClick = () => {
+  navigate('/profile'); // Navigates to the profile page
+};
 
   return (
     <div className="min-h-screen bg-gray-50 p-6">
       {/* Alert Banner */}
+      <button 
+    onClick={handleProfileClick}
+    className="absolute top-6 right-6 p-2 bg-white rounded-full shadow-md hover:bg-gray-100 transition-colors"
+    aria-label="Profile"
+  >
+    <UserCircleIcon className="h-6 w-6 text-gray-700" />
+  </button>
       {showAlert && (
         <div className="bg-red-50 border-l-4 border-red-500 p-4 mb-6 flex justify-between items-center">
           <div className="flex items-center">
